@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  		JMX Query tool build script.
+-->
+
+<project name="JMX Query tool" default="all" basedir=".">
+	
+	<property name="BASE"   location="."/>
+	<property name="src"	location="${BASE}/src"/>
+	<property name="out"	location="${BASE}/bin"/>
+	<property name="dist"	location="${BASE}/dist"/>
+
+	<path id="buildpath">
+	</path>
+	
+	<target name="all" depends="jar">
+		<copy todir="${dist}">	
+			<fileset dir="${out}">
+    				<include name="check_jmx*"/>
+			</fileset>
+		</copy>				
+		<tar destfile="${basedir}/check_jmx.tar.gz" basedir="${dist}" compression="gzip"/>
+	</target>
+	
+	<target name="jar">
+		<jar destfile="${dist}/jmxquery.jar" basedir="${out}"/>
+	</target>
+	
+</project>
